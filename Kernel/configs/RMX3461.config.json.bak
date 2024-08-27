@@ -1,11 +1,11 @@
 [
   {
-    "kernelSource": {
-      "name": "Xiaomi9KernelPoweredBySeparate",
-      "repo": "https://github.com/Separatee/AllinOneKernel",
-      "branch": "main",
-      "device": "cepheus",
-      "defconfig": "cepheus_defconfig"
+       "kernelSource": {
+      "name": "android_kernel_oplus_RMX3461",
+      "repo": "https://github.com/crdroidandroid/android_kernel_oplus_RMX3461.git",
+      "branch": "14.0",
+      "device": "RMX3461",
+      "defconfig": "gki_defconfig"
     },
     "toolchains": [
       {
@@ -34,7 +34,7 @@
       "use": false,
       "release": true
     },
-    "enableKernelSU": false,
+    "enableKernelSU": true,
     "enableLXC": false
   }
 ]
