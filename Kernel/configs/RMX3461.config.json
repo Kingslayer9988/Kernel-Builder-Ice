@@ -9,9 +9,9 @@
     },
     "toolchains": [
       {
-        "name": "proton-clang",
-        "repo": "https://github.com/kdrag0n/proton-clang",
-        "branch": "master",
+        "name": "neutron-clang",
+        "repo": "https://github.com/Debarpan102/neutron-clang.git",
+        "branch": "main",
         "binaryEnv": ["./bin"]
       }
     ],
