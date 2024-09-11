@@ -5,7 +5,7 @@
       "repo": "https://github.com/crdroidandroid/android_kernel_oplus_RMX3461.git",
       "branch": "14.0",
       "device": "RMX3461",
-      "defconfig": "gki_defconfig"
+      "defconfig": "vendor/lahaina-qgki_defconfig"
     },
     "toolchains": [
       {
