@@ -9,10 +9,12 @@
     },
     "toolchains": [
       {
-        "name": "neutron-clang",
-        "repo": "https://github.com/Debarpan102/neutron-clang.git",
-        "branch": "main",
-        "binaryEnv": ["./bin"]
+        "name": "clang",
+        "repo": "https://git.halogenos.org/halogenOS/android_prebuilts_clang_host_linux-x86_clang-r487747c.git",
+        "branch": "XOS-13.0",
+        "binaryEnv": [
+           "bin"
+        ]
       }
     ],
     "enableCcache": true,
@@ -20,9 +22,21 @@
       "ARCH": "arm64",
       "CC": "clang",
       "externalCommands": {
-        "CROSS_COMPILE": "neutron-clang/bin/aarch64-linux-gnu-",
-        "CROSS_COMPILE_ARM32": "neutron-clang/bin/arm-linux-gnueabi-",
-        "CLANG_TRIPLE": "aarch64-linux-gnu-"
+        "CLANG_TRIPLE": "aarch64-linux-gnu-",
+        "CROSS_COMPILE": "aarch64-linux-android-",
+        "CROSS_COMPILE_ARM32": "arm-linux-androideabi-",
+        "LD": "ld.lld",
+        "AR": "llvm-ar",
+        "NM": "llvm-nm",
+        "OBJCOPY": "llvm-objcopy",
+        "OBJDUMP": "llvm-objdump",
+        "READELF": "llvm-readelf",
+        "OBJSIZE": "llvm-size",
+        "STRIP": "llvm-strip",
+        "LDGOLD": "aarch64-linux-gnu-ld.gold",
+        "LLVM_AR": "llvm-ar",
+        "LLVM_DIS": "llvm-dis",
+        "CONFIG_THINLTO": ""
       }
     },
     "AnyKernel3": {
