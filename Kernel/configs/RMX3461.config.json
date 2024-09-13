@@ -10,8 +10,8 @@
     "toolchains": [
       {
         "name": "clang",
-        "repo": "https://git.halogenos.org/halogenOS/android_prebuilts_clang_host_linux-x86_clang-r487747c.git",
-        "branch": "XOS-13.0",
+        "repo": "https://github.com/aosp-clhex/android_prebuilts_clang_kernel_linux-x86_clang.git",
+        "branch": "r487747c",
         "binaryEnv": [
            "bin"
         ]
