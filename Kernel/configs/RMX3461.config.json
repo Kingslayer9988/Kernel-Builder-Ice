@@ -10,8 +10,8 @@
     "toolchains": [
       {
         "name": "clang",
-        "repo": "https://gitlab.com/crdroidandroid/android_prebuilts_clang_host_linux-x86_clang-r487747c.git",
-        "branch": "14.0",
+        "repo": "https://gitlab.com/tejas101k/clang-r450784d.git",
+        "branch": "master",
         "binaryEnv": [
            "bin"
         ]
