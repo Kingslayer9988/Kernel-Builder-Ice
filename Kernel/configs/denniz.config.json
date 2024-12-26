@@ -1,0 +1,37 @@
+[
+  {
+    "kernelSource": {
+      "name": "android_kernel_oplus_mt6893",
+      "repo": "https://github.com/oplus-ossi-development/android_kernel_oplus_mt6893.git",
+      "branch": "lineage-21",
+      "device": "denniz",
+      "defconfig": "denniz_defconfig"
+    },
+    "toolchains": [
+      {
+        "name": "clang",
+        "repo": "https://github.com/kdrag0n/proton-clang.git",
+        "branch": "master",
+        "binaryEnv": [
+           "bin"
+        ]
+      }
+    ],
+        "enableCcache": true,
+    "params": {
+      "ARCH": "arm64",
+      "CC": "clang",
+      "externalCommands": {
+        "CROSS_COMPILE": "proton-clang/bin/aarch64-linux-gnu-",
+        "CROSS_COMPILE_ARM32": "proton-clang/bin/arm-linux-gnueabi-",
+        "CLANG_TRIPLE": "aarch64-linux-gnu-"
+      }
+    },
+    "AnyKernel3": {
+      "use": false,
+      "release": true
+    },
+    "enableKernelSU": true,
+    "enableLXC": false
+  }
+]
