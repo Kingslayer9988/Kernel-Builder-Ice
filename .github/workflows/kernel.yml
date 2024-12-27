@@ -69,6 +69,11 @@ jobs:
 
       # Whether to enable LXC docker
       ENABLE_LXC: ${{ matrix.CONFIG.enableLXC }}
+      
+      # KERNELSU CHANGE
+      KERNELSU_USER: "rifsxd"
+      KERNELSU_BRANCH: "susfs-4.19"
+      KERNELSU_REPO: "KernelSU-Next"
 
       # Set output & ccache directory
       OUT_DIR: "${{ github.workspace }}/out"
@@ -234,10 +239,6 @@ jobs:
           ARCH: ${{ steps.generate-args.outputs.ARCH }}
         if: ${{ env.ENABLE_KERNELSU == 'true' }}
         run: |
-          if echo -n '${{ env.PARAMS }}' | jq -e 'has("custom")' > /dev/null; then
-            KERNELSU_USER="rifsxd"
-            KERNELSU_BRANCH="susfs-4.19"
-            KERNELSU_REPO="KernelSU-Next"
             # Delete old KernelSU
             if [ -d "./KernelSU" ]; then
               rm -rf "./KernelSU"
@@ -247,19 +248,6 @@ jobs:
             fi
             # Apply new KernelSU patches
             curl -LSs "https://raw.githubusercontent.com/$KERNELSU_USER/$KERNELSU_REPO/$KERNELSU_BRANCH/kernel/setup.sh" | bash -s $KERNELSU_BRANCH
-          else
-        
-          # Delete old KernelSU
-          if [ -d "./KernelSU" ]; then
-            rm -rf "./KernelSU"
-          fi
-          if [ -d "./drivers/kernelsu" ]; then
-            rm -rf "./drivers/kernelsu"
-          fi
-          # Apply new KernelSU patches
-          curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s main
-          fi
-          cat arch/${{ env.ARCH }}/configs/${{ env.KERNEL_DEFCONFIG_PATH }}
 
       - name: 😋 Setup LXC docker
         working-directory: ${{ env.KERNEL_NAME }}
