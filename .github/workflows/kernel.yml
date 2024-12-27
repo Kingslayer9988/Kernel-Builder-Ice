@@ -96,36 +96,6 @@ jobs:
           sudo apt-get install -y pwgen libswitch-perl policycoreutils minicom libxml-sax-base-perl libxml-simple-perl 
           sudo apt-get install -y zip unzip tar gzip bzip2 rar unrar llvm g++-multilib bison gperf zlib1g-dev automake
 
-      # Initialize ccache
-      - name: 🚄 Setup ccache
-        if: ${{ env.ENABLE_CCACHE == 'true' }}
-        id: hash
-        run: |
-          # Create output directory
-          mkdir -p ${{ env.OUT_DIR }}
-
-          # Initialize ccache
-          ccache -o compression=false -o cache_dir=${{ env.CCACHE_DIR }}
-
-          # Generate configuration's hash
-          echo $(echo -n '${{ toJSON(matrix.config) }}' | openssl dgst -sha1 | awk '{print $2}')
-          echo "HASH=$(echo -n '${{ toJSON(matrix.config) }}' | openssl dgst -sha1 | awk '{print $2}')" >> $GITHUB_OUTPUT
-
-      - name: 🚅 Cache ccache & output
-        env:
-          HASH: ${{ steps.hash.outputs.HASH }}
-        if: ${{ env.ENABLE_CCACHE == 'true' }}
-        uses: actions/cache@v3
-        with:
-          path: |
-            ${{ env.OUT_DIR }}
-            ${{ env.CCACHE_DIR }}
-          key: cache-${{ env.KERNEL_NAME }}-${{env.HASH}}-${{ env.BUILD_DATE }}
-          restore-keys: |
-            cache-${{ env.KERNEL_NAME }}-${{env.HASH}}-${{ env.BUILD_DATE }}
-            cache-${{ env.KERNEL_NAME }}-${{env.HASH}}-
-            cache-${{ env.KERNEL_NAME }}-
-
       - name: 🌟 Clone kernel source => (${{ env.KERNEL_REPO }})
         run: |
           git clone --recursive --depth=1 -j$(nproc) --branch ${{ env.KERNEL_BRANCH }} ${{ env.KERNEL_REPO }} ${{ env.KERNEL_NAME }}
