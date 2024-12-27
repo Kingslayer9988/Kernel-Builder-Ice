@@ -2,7 +2,7 @@
   {
     "kernelSource": {
       "name": "android_kernel_oplus_mt6893",
-      "repo": "https://github.com/Kingslayer9988/android_kernel_oplus_mt6893.git",
+      "repo": "https://github.com/oplus-ossi-development/android_kernel_oplus_mt6893.git",
       "branch": "lineage-21",
       "device": "denniz",
       "defconfig": "denniz_defconfig"
@@ -35,9 +35,10 @@
       }
     },
     "AnyKernel3": {
-      "use": false,
+      "use": true,
       "release": true
     },
     "enableKernelSU": true,
     "enableLXC": false
   }
+]
