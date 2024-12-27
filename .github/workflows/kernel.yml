@@ -70,11 +70,6 @@ jobs:
       # Whether to enable LXC docker
       ENABLE_LXC: ${{ matrix.CONFIG.enableLXC }}
       
-      # KERNELSU CHANGE
-      KERNELSU_USER: "rifsxd"
-      KERNELSU_BRANCH: "susfs-4.19"
-      KERNELSU_REPO: "KernelSU-Next"
-
       # Set output & ccache directory
       OUT_DIR: "${{ github.workspace }}/out"
       CCACHE_DIR: "${{ github.workspace }}/ccache"
@@ -247,7 +242,7 @@ jobs:
               rm -rf "./drivers/kernelsu"
             fi
             # Apply new KernelSU patches
-            curl -LSs "https://raw.githubusercontent.com/${{ env.KERNELSU_USER }}/${{ env.KERNELSU_REPO }}/${{ env.KERNELSU_BRANCH }}/kernel/setup.sh" | bash -s ${{ env.KERNELSU_BRANCH }}
+            curl -LSs "https://raw.githubusercontent.com/rifsxd/KernelSU-Next/next/kernel/setup.sh" | bash -s next-susfs-4.14
 
       - name: 😋 Setup LXC docker
         working-directory: ${{ env.KERNEL_NAME }}
