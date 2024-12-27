@@ -65,7 +65,7 @@ jobs:
       CONFIRM_RELEASE: ${{ matrix.CONFIG.AnyKernel3.release }}
 
       # Whether to enable KernelSU
-      ENABLE_KERNELSU: ${{ matrix.CONFIG.enableKernelSU }}
+      ENABLE_KERNELSU: "true"
 
       # Whether to enable LXC docker
       ENABLE_LXC: ${{ matrix.CONFIG.enableLXC }}
@@ -235,10 +235,9 @@ jobs:
         if: ${{ env.ENABLE_KERNELSU == 'true' }}
         run: |
           if echo -n '${{ env.PARAMS }}' | jq -e 'has("custom")' > /dev/null; then
-            CUSTOM_KERNELSU=$(echo -n '${{ env.PARAMS }}' | jq -r ".custom")
-            KERNELSU_USER=$(echo $CUSTOM_KERNELSU | jq -r ".user")
-            KERNELSU_BRANCH=$(echo $CUSTOM_KERNELSU | jq -r ".branch")
-            KERNELSU_REPO=$(echo $CUSTOM_KERNELSU | jq -r ".repo")
+            KERNELSU_USER="rifsxd"
+            KERNELSU_BRANCH="susfs-4.19"
+            KERNELSU_REPO="KernelSU-Next"
             # Delete old KernelSU
             if [ -d "./KernelSU" ]; then
               rm -rf "./KernelSU"
