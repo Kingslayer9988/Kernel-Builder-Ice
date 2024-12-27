@@ -228,11 +228,28 @@ jobs:
           echo "🤔 $args"
 
       - name: 😋 Setup KernelSU
-        working-directory: ${{ env.KERNEL_NAME }}
+        working-directory: ${{ github.workspace }}
         env:
+          PARAMS: "${{ toJSON(matrix.CONFIG.KernelSU) }}"
           ARCH: ${{ steps.generate-args.outputs.ARCH }}
         if: ${{ env.ENABLE_KERNELSU == 'true' }}
         run: |
+          if echo -n '${{ env.PARAMS }}' | jq -e 'has("custom")' > /dev/null; then
+            CUSTOM_KERNELSU=$(echo -n '${{ env.PARAMS }}' | jq -r ".custom")
+            KERNELSU_USER=$(echo $CUSTOM_KERNELSU | jq -r ".user")
+            KERNELSU_BRANCH=$(echo $CUSTOM_KERNELSU | jq -r ".branch")
+            KERNELSU_REPO=$(echo $CUSTOM_KERNELSU | jq -r ".repo")
+            # Delete old KernelSU
+            if [ -d "./KernelSU" ]; then
+              rm -rf "./KernelSU"
+            fi
+            if [ -d "./drivers/kernelsu" ]; then
+              rm -rf "./drivers/kernelsu"
+            fi
+            # Apply new KernelSU patches
+            curl -LSs "https://raw.githubusercontent.com/$KERNELSU_USER/$KERNELSU_REPO/$KERNELSU_BRANCH/kernel/setup.sh" | bash -s $KERNELSU_BRANCH
+          else
+        
           # Delete old KernelSU
           if [ -d "./KernelSU" ]; then
             rm -rf "./KernelSU"
@@ -240,11 +257,10 @@ jobs:
           if [ -d "./drivers/kernelsu" ]; then
             rm -rf "./drivers/kernelsu"
           fi
-          
           # Apply new KernelSU patches
-          curl -LSs "https://raw.githubusercontent.com/rifsxd/KernelSU/next/kernel/setup.sh" | bash -s next
+          curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s main
+          fi
           cat arch/${{ env.ARCH }}/configs/${{ env.KERNEL_DEFCONFIG_PATH }}
-
 
       - name: 😋 Setup LXC docker
         working-directory: ${{ env.KERNEL_NAME }}
