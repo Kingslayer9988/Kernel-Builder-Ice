@@ -34,11 +34,21 @@
               "LTO": "thin" 
       }
     },
-    "AnyKernel3": {
-      "use": true,
-      "release": true
-    },
-    "enableKernelSU": true,
-    "enableLXC": false
-  }
+            "AnyKernel3": {
+            "use": true,
+            "release": true,
+            "custom": {
+                "repo": "https://github.com/Kingslayer9988/AnyKernel3",
+                "branch": "denniz"
+            }
+        },
+        "KernelSU": {
+            "enable": true,
+            "custom": {
+                "user": "rifsxd",
+                "branch": "next-susfs-4.19",
+                "repo": "KernelSU-Next"
+            }
+        }
+    }
 ]
