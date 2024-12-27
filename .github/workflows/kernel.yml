@@ -227,6 +227,7 @@ jobs:
 
           echo "🤔 $args"
 
+
       - name: 😋 Setup KernelSU
         working-directory: ${{ env.KERNEL_NAME }}
         env:
@@ -240,6 +241,7 @@ jobs:
           if [ -d "./drivers/kernelsu" ]; then
             rm -rf "./drivers/kernelsu"
           fi
+
           # Apply new KernelSU patches
           curl -LSs "https://github.com/rifsxd/KernelSU-Next/blob/next-susfs-4.19/kernel/setup.sh" | bash -
           
