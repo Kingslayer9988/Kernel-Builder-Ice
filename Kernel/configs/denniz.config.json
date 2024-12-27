@@ -35,20 +35,9 @@
       }
     },
     "AnyKernel3": {
-         "use": true,
-         "release": true,
-         "custom": {
-             "repo": "https://github.com/Kingslayer9988/AnyKernel3",
-             "branch": "denniz"
-        }
-      },
-      "KernelSU": {
-         "enable": true,
-         "custom": {
-             "user": "rifsxd",
-             "branch": "susfs-4.19",
-             "repo": "KernelSU-Next"
-            }
-        }
-    }
-]
+      "use": false,
+      "release": true
+    },
+    "enableKernelSU": true,
+    "enableLXC": false
+  }
