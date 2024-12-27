@@ -228,7 +228,7 @@ jobs:
           echo "🤔 $args"
 
       - name: 😋 Setup KernelSU
-        working-directory: ${{ github.workspace }}
+        working-directory: ${{ env.KERNEL_NAME }}
         env:
           PARAMS: "${{ toJSON(matrix.CONFIG.KernelSU) }}"
           ARCH: ${{ steps.generate-args.outputs.ARCH }}
