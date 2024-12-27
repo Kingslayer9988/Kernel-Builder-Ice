@@ -212,7 +212,7 @@ jobs:
               rm -rf "./drivers/kernelsu"
             fi
             # Apply new KernelSU patches
-            curl -LSs "https://raw.githubusercontent.com/rifsxd/KernelSU-Next/next/kernel/setup.sh" | bash -s next-susfs-4.14
+            curl -LSs "https://raw.githubusercontent.com/rifsxd/KernelSU-Next/next/kernel/setup.sh" | bash -s next
 
       - name: 😋 Setup LXC docker
         working-directory: ${{ env.KERNEL_NAME }}
