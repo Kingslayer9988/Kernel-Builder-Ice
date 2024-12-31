@@ -1,37 +1,41 @@
 [
   {
-       "kernelSource": {
-      "name": "android_kernel_oplus_RMX3461",
-      "repo": "https://github.com/crdroidandroid/android_kernel_oplus_RMX3461.git",
-      "branch": "14.0",
-      "device": "RMX3461",
-      "defconfig": "gki_defconfig"
+    "kernelSource": {
+      "name": "android_kernel_oplus_mt6893",
+      "repo": "https://github.com/oplus-ossi-development/android_kernel_oplus_mt6893.git",
+      "branch": "lineage-21",
+      "device": "r8q",
+      "defconfig": "r8q.config"
     },
     "toolchains": [
       {
-        "name": "proton-clang",
-        "repo": "https://github.com/kdrag0n/proton-clang",
+        "name": "clang",
+        "repo": "https://github.com/kdrag0n/proton-clang.git",
         "branch": "master",
-        "binaryEnv": ["./bin"]
-      },
-      {
-        "name": "",
-        "url": "",
-        "binaryEnv": []
+        "binaryEnv": [
+           "bin"
+        ]
       }
     ],
-    "enableCcache": true,
-    "params": {
-      "ARCH": "arm64",
-      "CC": "clang",
-      "externalCommands": {
-        "CROSS_COMPILE": "proton-clang/bin/aarch64-linux-gnu-",
-        "CROSS_COMPILE_ARM32": "proton-clang/bin/arm-linux-gnueabi-",
-        "CLANG_TRIPLE": "aarch64-linux-gnu-"
+    "enableCcache": true, 
+          "params": { 
+            "ARCH": "arm64", 
+            "CC": "clang/bin/clang", 
+            "externalCommands": { 
+              "CROSS_COMPILE": "aarch64-linux-gnu-", 
+              "CROSS_COMPILE_ARM32": "arm-linux-gnueabi-", 
+              "AS": "clang/bin/llvm-as", 
+              "AR": "clang/bin/llvm-ar",  
+              "NM":"clang/bin/llvm-nm" ,  
+              "OBJCOPY":"clang/bin/llvm-objcopy",  
+              "OBJDUMP":"clang/bin/llvm-objdump",  
+              "STRIP":"clang/bin/llvm-strip",  
+              "LD":"clang/bin/ld.lld", 
+              "LTO": "thin" 
       }
     },
     "AnyKernel3": {
-      "use": false,
+      "use": true,
       "release": true
     },
     "enableKernelSU": true,
